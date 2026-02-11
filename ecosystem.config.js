@@ -41,7 +41,7 @@ module.exports = {
       env: {
         MLX_METAL_VALIDATION: '0',
       },
-      wait_ready: true,
+      // wait_ready removed: PM2 does not enforce startup ordering
       listen_timeout: 120000, // 2 min — model loading is slow
       max_restarts: 10,
       restart_delay: 5000,
@@ -69,7 +69,7 @@ module.exports = {
       env: {
         ANONYMIZED_TELEMETRY: 'false',
       },
-      wait_ready: true,
+      // wait_ready removed: PM2 does not enforce startup ordering
       listen_timeout: 30000,
       max_restarts: 10,
       restart_delay: 5000,
@@ -105,7 +105,7 @@ module.exports = {
         NEBULUS_CHROMA_URL: 'http://localhost:8001',
         PYTHONPATH: `${PROJECTS}/nebulus-gantry:${PROJECTS}/nebulus-core`,
       },
-      wait_ready: true,
+      // wait_ready removed: PM2 does not enforce startup ordering
       listen_timeout: 30000,
       max_restarts: 10,
       restart_delay: 5000,
