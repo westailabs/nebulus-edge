@@ -21,7 +21,7 @@
 ┌─────────────────┐    ┌─────────────────┐
 │   Body (UI)     │───▶│   Brain (LLM)   │
 │  Open WebUI     │    │  FastAPI + MLX  │
-│  Port 3000      │    │  Port 8080      │
+│  Port 3001      │    │  Port 8080      │
 └─────────────────┘    └─────────────────┘
          Docker              PM2
 ```
@@ -38,7 +38,7 @@
 - Package installation
 - User/service creation
 - System configuration
-- Run via: `venv/bin/ansible-playbook ansible/<playbook>.yml`
+- Run via: `ansible-playbook ansible/<playbook>.yml`
 
 ### 2. Git Workflow (Gitflow-lite)
 - **Never commit directly to `main` or `develop`**
@@ -48,12 +48,12 @@
 
 ### 3. Testing Requirements
 - All changes require tests in `tests/`
-- Run before completion: `pytest` or `./scripts/run_tests.sh`
+- Run before completion: `pytest`
 - Strict flake8 compliance (zero errors)
 - Type hints mandatory for all functions
 
 ### 4. Discovery-Driven Development
-- Check existing patterns in `src/` before implementing
+- Check existing patterns in `brain/`, `body/`, `shared/`, `nebulus_edge/` before implementing
 - Reference `reference_/` directories as ground truth if they exist
 - No assumptions based on "general knowledge"
 
@@ -84,7 +84,7 @@ pm2 start infrastructure/pm2_config.json
 |------|---------|
 | `brain/server.py` | Main LLM API server |
 | `body/docker-compose.yml` | Open WebUI configuration |
-| `infrastructure/pm2_config.json` | PM2 process config |
+| `infrastructure/pm2_config.json` | PM2 process config (also `ecosystem.config.js`) |
 | `ansible/` | Ansible playbooks and roles |
 | `docs/AI_INSIGHTS.md` | Long-term memory for agents |
 | `docs/features/` | Feature specifications |
@@ -109,7 +109,7 @@ Update `docs/AI_INSIGHTS.md` when encountering:
 Three public-facing documentation surfaces must stay consistent:
 
 1. **README.md** — Primary landing page. SEO-optimized for GitHub search and Google indexing. Contains keyword-rich sections targeting healthcare, legal, finance, and automotive verticals. **Preserve the SEO keyword sections and comparison table when editing.**
-2. **GitHub Wiki** — User-facing guides at `https://github.com/jlwestsr/nebulus-edge/wiki`. Cloned locally at `../nebulus-edge.wiki/` (sibling to main repo, SSH remote). Pages: Home, Installation-Guide, Quick-Start, Architecture-Overview, Audit-Logging.
+2. **GitHub Wiki** — User-facing guides at `https://github.com/jlwestsr/nebulus-edge/wiki`. Clone if needed: `../nebulus-edge.wiki/` (sibling to main repo, SSH remote). Pages: Home, Installation-Guide, Quick-Start, Architecture-Overview, Audit-Logging.
 3. **docs/audit_logging.md** — In-repo reference for audit system internals.
 
 **Rules:**
