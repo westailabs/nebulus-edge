@@ -5,3 +5,4 @@ fastapi>=0.100.0
 uvicorn>=0.20.0
 httpx>=0.24.0
 python-multipart
+nebulus-core @ git+https://github.com/westailabs/nebulus-core.git@v0.2.1
